@@ -66,7 +66,10 @@ ck('digest respects default budget (≤900)', summary.length <= 900)
 // project-neutral wording: the configured path itself may contain anything (it is the user's own
 // path) and topic names come from the user's INDEX.md — so only the *plugin-authored* wording is
 // checked for personal/project vocabulary.
-ck('digest body is project-neutral (no personal wording)', !/鲸鱼娘|whalemaid|RULES\.md|MemoryGuard|记忆库卫生/i.test(summary))
+const authored = summary.split('\n').filter((l) => /^Memory library|^When you need/.test(l)).join('\n')
+ck('digest authored text is project-neutral', !/鲸鱼娘|whalemaid|RULES\.md|MemoryGuard/i.test(authored))
+ck('digest keeps the user\'s own topic names (from INDEX.md)', /Topics:/.test(summary))
+ck("digest keeps the user topic names (from INDEX.md)", /Topics:/.test(summary))
 ck('digest body speaks in English', /memory_find|search|topics/i.test(summary))
 ck('registers 3 HTTP routes', routes.length === 3)
 ck('route paths correct', ['/memory-lite/stats', '/memory-lite/health', '/memory-lite/config'].every((p) => routes.some((r) => r.path === p)))
