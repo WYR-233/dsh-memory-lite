@@ -1,0 +1,43 @@
+{
+  "name": "dsh-memory-lite",
+  "version": "0.1.0",
+  "description": "只读记忆库增强：memory_find 检索工具 + 开场记忆库摘要注入（md 卡片 + Git 白盒记忆库，零写入零依赖）",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "memory",
+    "agent-memory",
+    "retrieval"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "selftest": "echo 见记忆库项目 memory\\工作\\项目统筹6-09-11_片② 卡片的验证记录"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WYR-233/dsh-memory-lite.git"
+  },
+  "homepage": "https://github.com/WYR-233/dsh-memory-lite"
+}
