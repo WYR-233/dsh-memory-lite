@@ -1,7 +1,7 @@
 {
   "name": "dsh-memory-lite",
-  "version": "0.1.0",
-  "description": "只读记忆库增强：memory_find 检索工具 + 开场摘要注入 + 设置页概览/健康/开关（md 卡片 + Git 白盒记忆库）",
+  "version": "0.2.0",
+  "description": "Read-only enhancer for a file-based (markdown + git) long-term memory library in DeepSeek Harness: memory_find search tool, budgeted memory digest injection, and a settings page with overview/health/toggles.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -15,7 +15,8 @@
   "files": [
     "lib",
     "cordis.patch.yml",
-    "README.md"
+    "README.md",
+    "tools/selftest.mjs"
   ],
   "license": "MIT",
   "keywords": [
@@ -25,7 +26,10 @@
     "dsh-plugin",
     "memory",
     "agent-memory",
-    "retrieval"
+    "retrieval",
+    "markdown",
+    "git",
+    "long-term-memory"
   ],
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1"
