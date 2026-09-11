@@ -2,11 +2,23 @@
 // 用法：node tools/selftest.mjs      （纯 Node 内置模块，任意目录可跑）
 // 2026-09-11 首次运行：12 项断言全绿；期间抓到「中文查询经 spawn argv 丢失」的坑，故改走 stdin。
 import { apply, name, inject } from '../lib/index.js'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join } from 'node:path'
 
 let fail = 0
 const ck = (label, cond) => { console.log((cond ? 'PASS ' : 'FAIL ') + label); if (!cond) fail++ }
 
 console.log('plugin name =', name, '| inject =', JSON.stringify(inject))
+
+// ── 静态检查：inject 必须覆盖 apply 里用到的所有 ctx 服务 ────────────────────
+// 2026-09-11 血泪：漏声明 systemPrompt 让 DSH 启动整树失败、生产实例起不来。
+const src = readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'lib', 'index.js'), 'utf8')
+const used = [...new Set([...src.matchAll(/\bctx\.([A-Za-z_$][\w$]*)/g)].map((m) => m[1]))]
+const declared = new Set(inject)
+const missing = used.filter((s) => !declared.has(s))
+ck('inject 覆盖所有 ctx 服务（用到：' + used.join(', ') + '）', missing.length === 0)
+if (missing.length > 0) console.log('     ⚠ 漏声明：' + missing.join(', ') + ' → 会导致 DSH 启动失败！')
 
 const registered = []
 const sections = []
