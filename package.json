@@ -1,13 +1,16 @@
 {
   "name": "dsh-memory-lite",
   "version": "0.1.0",
-  "description": "只读记忆库增强：memory_find 检索工具 + 开场记忆库摘要注入（md 卡片 + Git 白盒记忆库，零写入零依赖）",
+  "description": "只读记忆库增强：memory_find 检索工具 + 开场摘要注入 + 设置页概览/健康/开关（md 卡片 + Git 白盒记忆库）",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
     "./cordis.patch.yml": "./cordis.patch.yml",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./client": {
+      "default": "./lib/client.js"
+    }
   },
   "files": [
     "lib",
@@ -30,6 +33,14 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
     }
   },
   "scripts": {
