@@ -1,0 +1,62 @@
+{
+  "name": "dsh-memory-lite",
+  "version": "0.4.0",
+  "description": "Read-only enhancer for a file-based (markdown + git) long-term memory library in DeepSeek Harness: memory_find search tool with a zero-dependency built-in engine (external script optional), one-click library creation, in-panel path picking, a governance dashboard, a /memory slash command, a bundled memory-library skill, and a settings page that stays useful with no configuration at all.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json",
+    "./client": {
+      "default": "./lib/client.js"
+    }
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "tools/clientcheck.mjs",
+    "tools/selftest.mjs"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "memory",
+    "agent-memory",
+    "retrieval",
+    "markdown",
+    "git",
+    "long-term-memory",
+    "builtin-search",
+    "slash-command",
+    "skill"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "slots",
+        "locale"
+      ]
+    }
+  },
+  "scripts": {
+    "selftest": "node tools/selftest.mjs",
+    "check:client": "node tools/clientcheck.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WYR-233/dsh-memory-lite.git"
+  },
+  "homepage": "https://github.com/WYR-233/dsh-memory-lite"
+}
