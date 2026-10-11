@@ -47,6 +47,10 @@ const clientExports = captured.factory((name) => {
   throw new Error('unexpected require: ' + name)
 })
 ck('exports inject + apply', Array.isArray(clientExports.inject) && typeof clientExports.apply === 'function')
+// 接线断言：apply 里必须存下插件上下文、并注入侧栏样式 —— 这两件事都曾静默丢失过
+ck('apply wires pluginCtx', /pluginCtx\s*=\s*ctx/.test(src))
+ck('apply injects footer styles', /injectFooterStyles\(\);/.test(src))
+ck('footer entry carries its style hook attribute', /data-memlite-footer/.test(src))
 
 const slots = {
   inject: (_key, cb) => cb(),

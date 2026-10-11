@@ -1,6 +1,6 @@
 {
   "name": "dsh-memory-lite",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Read-only enhancer for a file-based (markdown + git) long-term memory library in DeepSeek Harness: memory_find search tool with a zero-dependency built-in engine (external script optional), one-click library creation, in-panel path picking, a governance dashboard, a /memory slash command, a bundled memory-library skill, and a settings page that stays useful with no configuration at all.",
   "type": "module",
   "main": "lib/index.js",
